@@ -1,6 +1,4 @@
-# Complice Test (complice_test)
-
-a pseudo clone of complice for practice
+# Taskboard
 
 ## Install the dependencies
 ```bash

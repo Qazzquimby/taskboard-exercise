@@ -138,9 +138,9 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `Complice Test`,
-        short_name: `Complice Test`,
-        description: `a pseudo clone of complice for practice`,
+        name: `Taskboard`,
+        short_name: `Taskboard`,
+        description: `a taskboard exercise`,
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
@@ -203,7 +203,7 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: "complice_test",
+        appId: "taskboard",
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

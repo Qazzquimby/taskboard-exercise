@@ -1,8 +1,8 @@
 {
-  "name": "complice_test",
+  "name": "taskboard",
   "version": "0.0.1",
-  "description": "a pseudo clone of complice for practice",
-  "productName": "Complice Test",
+  "description": "a taskboard exercise",
+  "productName": "Taskboard",
   "author": "qazzquimby",
   "private": true,
   "scripts": {
