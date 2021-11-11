@@ -1,0 +1,16 @@
+{
+  "areas": [
+    {
+      "id": 1,
+      "index": 1,
+      "name": "Rivals of Aether",
+      "description": "Make Rivals of Aether modding a nicer place. Help to grow the environment, and help people make better work. Includes making my own project with those tools."
+    },
+    {
+      "id": 2,
+      "index": 2,
+      "name": "Aetherpunch",
+      "description": "Make Aetherpunch the kind of game I'd love playing. Make something really special."
+    }
+  ]
+}
