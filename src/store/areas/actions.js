@@ -18,11 +18,27 @@ export async function increaseIndex(context, { id }) {
   });
 }
 
-export async function setName(context, { id, name }) {
+function getArea(context, id) {
   const areas = get(context.state);
   const indexWithId = areas.findIndex((area) => area.id === id);
   const currentIndex = areas[indexWithId];
-  await saveArea(context, { id: currentIndex.id, patch: { name } });
+  return currentIndex;
+}
+
+export async function setName(context, { id, newValue }) {
+  const area = getArea(context, id);
+  await saveArea(context, {
+    id: area.id,
+    patch: { name: newValue },
+  });
+}
+
+export async function setDescription(context, { id, newValue }) {
+  const area = getArea(context, id);
+  await saveArea(context, {
+    id: area.id,
+    patch: { description: newValue },
+  });
 }
 
 export async function load(context) {
@@ -37,11 +53,7 @@ export async function load(context) {
 export async function saveArea(context, { id, patch }) {
   context.commit("save", { id, patch });
   try {
-    const response = await axios.patch(
-      `http://localhost:3007/areas/${id}`,
-      patch
-    );
-    console.log("Response", response.data);
+    await axios.patch(`http://localhost:3007/areas/${id}`, patch);
   } catch (e) {
     console.log(e);
   }

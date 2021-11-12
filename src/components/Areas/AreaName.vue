@@ -17,12 +17,9 @@
 </template>
 
 <script>
-import { watch, computed, ref, toRefs } from "vue";
+import { toRefs } from "vue";
 import vClickOutside from "click-outside-vue3";
-import { useStore } from "vuex";
-import { onClickOutside } from "@vueuse/core";
-
-function textBox() {}
+import useAreaTextBos from "components/Areas/useAreaTextBox";
 
 export default {
   name: "AreaName",
@@ -37,39 +34,9 @@ export default {
   },
 
   setup(props) {
-    const store = useStore();
-
     const { areaId } = toRefs(props);
-    const area = computed({
-      get: () => store.getters["areas/getById"](areaId.value),
-    });
 
-    const isEditing = ref(false);
-    const textBoxValue = ref(area.value.name);
-    function onClick() {
-      isEditing.value = true;
-    }
-
-    const textBox = ref(null);
-    watch(
-      () => textBox.value,
-      (value) => {
-        if (value != null) {
-          value.focus();
-        }
-      }
-    );
-
-    function updateName(name) {
-      store.dispatch("areas/setName", { id: areaId.value, name });
-      isEditing.value = false;
-    }
-
-    onClickOutside(textBox, () => {
-      updateName(textBoxValue.value);
-    });
-
-    return { textBox, isEditing, area, textBoxValue, onClick, updateName };
+    return { ...useAreaTextBos(areaId, "areas/setName", "name") };
   },
 };
 </script>
