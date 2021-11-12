@@ -8,13 +8,16 @@ export async function increaseIndex(context, { id }) {
     console.log("ERROR: Called increase index on the last area.");
   }
 
-  const currentIndex = areas[indexWithId];
-  await saveArea(context, { id: currentIndex.id, index: currentIndex + 1 });
-
-  const nextIndex = areas[indexWithId + 1];
+  const currentArea = areas[indexWithId];
   await saveArea(context, {
-    id: nextIndex.id,
-    patch: { index: nextIndex + 1 },
+    id: currentArea.id,
+    patch: { index: currentArea.index + 1 },
+  });
+
+  const nextArea = areas[indexWithId + 1];
+  await saveArea(context, {
+    id: nextArea.id,
+    patch: { index: nextArea.index - 1 },
   });
 }
 
