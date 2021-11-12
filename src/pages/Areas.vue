@@ -34,7 +34,7 @@
                 <AreaName :areaId="area.id" />
               </q-item-label>
               <q-item-label>
-                <p class="text-italic text-subtitle1">{{ area.description }}</p>
+                <AreaDescription :areaId="area.id" />
               </q-item-label>
             </q-item-section>
           </div>
@@ -55,10 +55,11 @@
 import { useStore } from "vuex";
 import { computed, ref } from "vue";
 import AreaName from "components/Areas/AreaName";
+import AreaDescription from "components/Areas/AreaDescription";
 
 export default {
   name: "Areas",
-  components: { AreaName },
+  components: { AreaDescription, AreaName },
   setup() {
     const store = useStore();
 
