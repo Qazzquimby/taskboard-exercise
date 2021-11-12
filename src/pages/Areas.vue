@@ -11,9 +11,10 @@
           <div class="row">
             <q-item-section class="area__dark col-2 area__left-block">
               <q-btn
-                v-show="isEditMode"
+                v-if="isEditMode"
+                @click="moveUp(area.id)"
                 :icon="'arrow_upward'"
-                class="area__light q-ma-sm area__form-control"
+                class="area__light q-ma-sm"
                 :class="area.index <= 1 ? 'visibility-hidden' : ''"
                 style="margin-bottom: 40px"
               ></q-btn>
@@ -71,11 +72,15 @@ export default {
     const moveDown = (id) => {
       store.dispatch("areas/increaseIndex", { id });
     };
+    const moveUp = (id) => {
+      store.dispatch("areas/decreaseIndex", { id });
+    };
 
     return {
       areas,
       isEditMode,
       moveDown,
+      moveUp,
     };
   },
   // created() {
