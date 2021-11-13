@@ -20,7 +20,7 @@
             ]"
             style="margin-bottom: 40px"
           ></q-btn>
-          <p class="area__order-number">
+          <p class="area__order-number non-selectable">
             {{ area.index }}
           </p>
           <q-btn
