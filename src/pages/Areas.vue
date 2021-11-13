@@ -33,16 +33,6 @@ export default {
 </script>
 
 <style lang="sass">
-$dark_area_color: rgb(76, 0, 10)
-$light_area_color: #f44336
-
-.area__dark
-  background: $dark_area_color
-  color: $light_area_color
-
-.area__light
-  background: $light_area_color
-  color: black
 
 .area__left-block
   width: 100px !important
@@ -53,7 +43,6 @@ $light_area_color: #f44336
   font-size: 130px
   margin-top: -80px
   margin-bottom: -80px
-  //position: absolute
   width: 90px
 
 .listReorder-move

@@ -1,12 +1,12 @@
 <template>
-  <q-item :key="area.id" class="no-padding q-mb-md area__light">
+  <q-item :key="area.id" class="no-padding q-mb-md area__light area__red">
     <div class="col">
       <div class="row">
-        <q-item-section class="area__dark col-2 area__left-block">
+        <q-item-section class="area__dark area__red col-2 area__left-block">
           <q-btn
             @click="moveUp(area.id)"
             :icon="'arrow_upward'"
-            class="area__light q-ma-sm"
+            class="area__light area__red q-ma-sm"
             :class="area.index <= 1 ? 'visibility-hidden' : ''"
             style="margin-bottom: 40px"
           ></q-btn>
@@ -16,7 +16,7 @@
           <q-btn
             @click="moveDown(area.id)"
             :icon="'arrow_downward'"
-            class="area__light q-ma-sm"
+            class="area__light area__red q-ma-sm"
             :class="isLast ? 'visibility-hidden' : ''"
             style="margin-top: 40px"
           />
@@ -32,7 +32,7 @@
       </div>
 
       <q-item-section>
-        <q-bar class="no-padding area__dark">
+        <q-bar class="no-padding area__dark area__red">
           <div class="area__left-block"></div>
           <div class="col">Put current goal here</div>
         </q-bar>
@@ -65,16 +65,8 @@ export default {
 };
 </script>
 <style lang="sass">
-$dark_area_color: rgb(76, 0, 10)
-$light_area_color: #f44336
-
-.area__dark
-  background: $dark_area_color
-  color: $light_area_color
-
-.area__light
-  background: $light_area_color
-  color: black
+@use "sass:map"
+@use "sass:list"
 
 .area__left-block
   width: 100px !important
@@ -86,4 +78,20 @@ $light_area_color: #f44336
   margin-top: -80px
   margin-bottom: -80px
   width: 90px
+
+
+$color-dark-light-map: ("red": (rgb(76, 0, 10), rgb(244, 67, 54)), "blue": (rgb(0, 22, 76), rgb(42, 117, 255)))
+
+.area__dark
+  @each $name, $color in $color-dark-light-map
+    &.area__#{$name}
+      background: nth($color, 1)
+      color: nth($color, 2)
+
+.area__light
+  color: black
+
+  @each $name, $color in $color-dark-light-map
+    &.area__#{$name}
+      background: nth($color, 2)
 </style>
