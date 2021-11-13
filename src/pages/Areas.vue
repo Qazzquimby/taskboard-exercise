@@ -1,82 +1,32 @@
 <template>
   <q-page padding>
-    <q-btn @click="isEditMode = !isEditMode" label="Edit" />
     <transition-group tag="q-list" name="listReorder">
-      <q-item
+      <Area
         v-for="area in areas"
         :key="area.id"
-        class="no-padding q-mb-md area__light"
-      >
-        <div class="col">
-          <div class="row">
-            <q-item-section class="area__dark col-2 area__left-block">
-              <q-btn
-                v-if="isEditMode"
-                @click="moveUp(area.id)"
-                :icon="'arrow_upward'"
-                class="area__light q-ma-sm"
-                :class="area.index <= 1 ? 'visibility-hidden' : ''"
-                style="margin-bottom: 40px"
-              ></q-btn>
-              <p class="area__order-number">
-                {{ area.index }}
-              </p>
-              <q-btn
-                v-if="isEditMode"
-                @click="moveDown(area.id)"
-                :icon="'arrow_downward'"
-                class="area__light q-ma-sm"
-                :class="area.index >= areas.length ? 'visibility-hidden' : ''"
-                style="margin-top: 40px"
-              />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>
-                <AreaName :areaId="area.id" />
-              </q-item-label>
-              <q-item-label>
-                <AreaDescription :areaId="area.id" />
-              </q-item-label>
-            </q-item-section>
-          </div>
-
-          <q-item-section>
-            <q-bar class="no-padding area__dark">
-              <div class="area__left-block"></div>
-              <div class="col">Put current goal here</div>
-            </q-bar>
-          </q-item-section>
-        </div>
-      </q-item>
+        :area="area"
+        :isLast="area.index >= areas.length"
+      />
     </transition-group>
   </q-page>
 </template>
 
 <script>
 import { useStore } from "vuex";
-import { computed, ref } from "vue";
-import AreaName from "components/Areas/AreaName";
-import AreaDescription from "components/Areas/AreaDescription";
+import { computed } from "vue";
+import Area from "components/Areas/Area";
 
 export default {
   name: "Areas",
-  components: { AreaDescription, AreaName },
+  components: { Area },
   setup() {
     const store = useStore();
-
-    const isEditMode = ref(true);
 
     store.dispatch("areas/load");
     const areas = computed(() => store.getters["areas/get"]);
 
-    const moveDown = (id) => store.dispatch("areas/increaseIndex", { id });
-    const moveUp = (id) => store.dispatch("areas/decreaseIndex", { id });
-
     return {
       areas,
-      isEditMode,
-      moveDown,
-      moveUp,
     };
   },
 };
