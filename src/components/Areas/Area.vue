@@ -1,13 +1,23 @@
 <template>
-  <q-item :key="area.id" class="no-padding q-mb-md area__light area__red">
+  <q-item
+    :key="area.id"
+    class="no-padding q-mb-md area__light"
+    :class="'area__' + area.color"
+  >
     <div class="col">
       <div class="row">
-        <q-item-section class="area__dark area__red col-2 area__left-block">
+        <q-item-section
+          class="area__dark col-2 area__left-block"
+          :class="'area__' + area.color"
+        >
           <q-btn
             @click="moveUp(area.id)"
             :icon="'arrow_upward'"
-            class="area__light area__red q-ma-sm"
-            :class="area.index <= 1 ? 'visibility-hidden' : ''"
+            class="area__light q-ma-sm"
+            :class="[
+              area.index <= 1 ? 'visibility-hidden' : '',
+              'area__' + area.color,
+            ]"
             style="margin-bottom: 40px"
           ></q-btn>
           <p class="area__order-number">
@@ -16,8 +26,8 @@
           <q-btn
             @click="moveDown(area.id)"
             :icon="'arrow_downward'"
-            class="area__light area__red q-ma-sm"
-            :class="isLast ? 'visibility-hidden' : ''"
+            class="area__light q-ma-sm"
+            :class="[isLast ? 'visibility-hidden' : '', 'area__' + area.color]"
             style="margin-top: 40px"
           />
         </q-item-section>
@@ -32,7 +42,7 @@
       </div>
 
       <q-item-section>
-        <q-bar class="no-padding area__dark area__red">
+        <q-bar class="no-padding area__dark" :class="'area__' + area.color">
           <div class="area__left-block"></div>
           <div class="col">Put current goal here</div>
         </q-bar>
@@ -80,7 +90,7 @@ export default {
   width: 90px
 
 
-$color-dark-light-map: ("red": (rgb(76, 0, 10), rgb(244, 67, 54)), "blue": (rgb(0, 22, 76), rgb(42, 117, 255)))
+$color-dark-light-map: ("red": (rgb(76, 0, 10), rgb(244, 67, 54)), "blue": (rgb(0, 22, 76), rgb(53, 154, 252)))
 
 .area__dark
   @each $name, $color in $color-dark-light-map
