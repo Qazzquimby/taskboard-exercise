@@ -69,12 +69,8 @@ export default {
     store.dispatch("areas/load");
     const areas = computed(() => store.getters["areas/get"]);
 
-    const moveDown = (id) => {
-      store.dispatch("areas/increaseIndex", { id });
-    };
-    const moveUp = (id) => {
-      store.dispatch("areas/decreaseIndex", { id });
-    };
+    const moveDown = (id) => store.dispatch("areas/increaseIndex", { id });
+    const moveUp = (id) => store.dispatch("areas/decreaseIndex", { id });
 
     return {
       areas,
@@ -83,9 +79,6 @@ export default {
       moveUp,
     };
   },
-  // created() {
-  //   this.$store.dispatch("areas/load");
-  // },
 };
 </script>
 
