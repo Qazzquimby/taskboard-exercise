@@ -10,6 +10,8 @@
   <q-input
     v-else
     ref="textBox"
+    filled
+    autogrow
     @keydown.enter="updateName(textBoxValue)"
     v-model="textBoxValue"
     input-style="font-size: larger"

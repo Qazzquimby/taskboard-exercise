@@ -9,11 +9,11 @@
   <q-input
     v-else
     ref="textBox"
+    filled
     @keydown.enter="updateName(textBoxValue)"
     v-model="textBoxValue"
     input-style="font-size: larger"
-  >
-  </q-input>
+  />
 </template>
 
 <script>
