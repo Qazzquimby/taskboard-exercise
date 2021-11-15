@@ -50,10 +50,10 @@
     </div>
   </q-item>
 </template>
+
 <script>
 import AreaDescription from "components/Areas/AreaDescription";
 import AreaName from "components/Areas/AreaName";
-import { useStore } from "vuex";
 
 export default {
   name: "Area",
@@ -62,17 +62,16 @@ export default {
     area: { required: true },
     isLast: { default: false },
   },
-  setup() {
-    const store = useStore();
-
-    const moveUp = (id) => store.dispatch("areas/decreaseIndex", { id });
-    const moveDown = (id) => store.dispatch("areas/increaseIndex", { id });
-    return {
-      moveUp,
-      moveDown,
-    };
-  },
 };
+</script>
+
+<script setup>
+import { useStore } from "vuex";
+
+const store = useStore();
+
+const moveUp = (id) => store.dispatch("areas/decreaseIndex", { id });
+const moveDown = (id) => store.dispatch("areas/increaseIndex", { id });
 </script>
 <style lang="sass">
 @use "sass:map"
