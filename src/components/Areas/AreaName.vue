@@ -17,10 +17,7 @@
 </template>
 
 <script>
-import { toRefs } from "vue";
 import vClickOutside from "click-outside-vue3";
-import useAreaTextBos from "components/Areas/useAreaTextBox";
-
 export default {
   name: "AreaName",
   props: {
@@ -32,11 +29,21 @@ export default {
   directives: {
     clickOutside: vClickOutside.directive,
   },
-
-  setup(props) {
-    const { areaId } = toRefs(props);
-
-    return { ...useAreaTextBos(areaId, "areas/setName", "name") };
-  },
 };
+</script>
+
+<script setup>
+import { toRefs } from "vue";
+import useAreaTextBox from "components/Areas/useAreaTextBox";
+
+const props = defineProps({
+  areaId: {
+    type: Number,
+    required: true,
+  },
+});
+
+const { areaId } = toRefs(props);
+const { textBox, isEditing, area, textBoxValue, onClick, updateField } =
+  useAreaTextBox(areaId, "areas/setName", "name");
 </script>
