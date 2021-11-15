@@ -12,7 +12,7 @@
         >
           <q-btn
             @click="moveUp(area.id)"
-            :icon="'arrow_upward'"
+            icon="arrow_upward"
             class="area__light q-ma-sm"
             :class="[
               area.index <= 1 ? 'visibility-hidden' : '',
@@ -25,7 +25,7 @@
           </p>
           <q-btn
             @click="moveDown(area.id)"
-            :icon="'arrow_downward'"
+            icon="arrow_downward"
             class="area__light q-ma-sm"
             :class="[isLast ? 'visibility-hidden' : '', 'area__' + area.color]"
             style="margin-top: 40px"
@@ -60,7 +60,7 @@ export default {
   components: { AreaDescription, AreaName },
   props: {
     area: { required: true },
-    isLast: { default: false },
+    isLast: { type: Boolean },
   },
 };
 </script>
