@@ -5,9 +5,7 @@ import { onClickOutside } from "@vueuse/core";
 export default function useAreaTextBos(areaId, setter, areaField) {
   const store = useStore();
 
-  const area = computed({
-    get: () => store.getters["areas/getById"](areaId.value),
-  });
+  const area = computed(() => store.getters["areas/getById"](areaId.value));
 
   const isEditing = ref(false);
   const textBoxValue = ref(area.value[areaField]);
