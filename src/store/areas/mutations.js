@@ -9,7 +9,7 @@ export function setArea(state, area) {
   state.areas[indexWithId] = area;
 }
 
-export async function save(state, { id, patch }) {
+export function save(state, { id, patch }) {
   const indexWithId = state.areas.findIndex(
     (existingArea) => existingArea.id === id
   );
