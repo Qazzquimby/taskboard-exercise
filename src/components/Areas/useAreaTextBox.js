@@ -40,6 +40,6 @@ export default function useAreaTextBos(areaId, setter, areaField) {
     area,
     textBoxValue,
     onClick,
-    updateName: updateField,
+    updateField,
   };
 }

@@ -12,7 +12,7 @@
     ref="textBox"
     filled
     autogrow
-    @keydown.enter="updateName(textBoxValue)"
+    @keydown.enter="updateField(textBoxValue)"
     v-model="textBoxValue"
     input-style="font-size: larger"
   >
@@ -20,26 +20,28 @@
 </template>
 
 <script>
-import { toRefs } from "vue";
 import vClickOutside from "click-outside-vue3";
-import useAreaTextBos from "components/Areas/useAreaTextBox";
 
 export default {
   name: "AreaDescription",
-  props: {
-    areaId: {
-      type: Number,
-      required: true,
-    },
-  },
   directives: {
     clickOutside: vClickOutside.directive,
   },
-
-  setup(props) {
-    const { areaId } = toRefs(props);
-
-    return { ...useAreaTextBos(areaId, "areas/setDescription", "description") };
-  },
 };
+</script>
+
+<script setup>
+import { toRefs } from "vue";
+import useAreaTextBox from "components/Areas/useAreaTextBox";
+
+const props = defineProps({
+  areaId: {
+    type: Number,
+    required: true,
+  },
+});
+
+const { areaId } = toRefs(props);
+const { textBox, isEditing, area, textBoxValue, onClick, updateField } =
+  useAreaTextBox(areaId, "areas/setDescription", "description");
 </script>

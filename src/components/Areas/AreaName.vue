@@ -10,7 +10,7 @@
     v-else
     ref="textBox"
     filled
-    @keydown.enter="updateName(textBoxValue)"
+    @keydown.enter="updateField(textBoxValue)"
     v-model="textBoxValue"
     input-style="font-size: larger"
   />
